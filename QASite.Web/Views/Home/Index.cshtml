@@ -1,0 +1,32 @@
+﻿@using QASite.Data
+@model QuestionsViewModel 
+@foreach (Question q in Model.Questions)
+{
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card card-body bg-light">
+            <h4>
+                <a href="/home/viewquestion?id=@q.Id">
+                    @q.Title
+                </a>
+            </h4>
+                     <div style="margin-top: 10px;">
+                @(q.Text.Length < 200 ? q.Text : $"{q.Text.Substring(0, 200)}...")
+            </div>
+            <br/>
+            <div>
+                       <span>Tags:</span>
+                @foreach (QuestionsTags qt in q.QuestionsTags)
+                {
+                    <span class="badge badge-primary">@qt.Tag.Name</span>
+                }
+            </div>
+            <br />
+            <span>Likes: @q.Likes.Count</span>
+            <br />
+            <span>@q.Answers.Count answer(s)</span>
+        </div>
+    </div>
+</div>
+
+}
