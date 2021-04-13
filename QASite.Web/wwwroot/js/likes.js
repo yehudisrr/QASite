@@ -1,7 +1,6 @@
 ﻿$(() => {
     setInterval(() => {
         const id = $("#current-id").val();
-        console.log(id);
         $.get('/home/getLikes', { id }, function (likes) {
             $("#likes-count").text(likes);
         });
@@ -13,6 +12,7 @@
             $.post('/home/like', { id }, function (likes) {
             })
             $(this).removeClass('bi bi-suit-heart').addClass('bi bi-suit-heart-fill');
+            $("#like-question").unbind('click');
       
     });
 });
